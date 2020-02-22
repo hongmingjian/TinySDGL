@@ -13,12 +13,12 @@ all: $(LIB) libTinyGLU.a
 
 $(LIB): $(OBJS)
 	rm -f $(LIB)
-	ar rcs $(LIB) $(OBJS)
+	$(AR) rcs $(LIB) $(OBJS)
 	mv $(LIB) ../lib
 
 libTinyGLU.a: glu.o
 	rm -f $@
-	ar rcs $@ $<
+	$(AR) rcs $@ $<
 	mv $@ ../lib
 
 clean:

@@ -1,9 +1,18 @@
 #####################################################################
 # C compiler
 
+ifeq ($(shell uname -s),Darwin)
+CROSS=i586-elf-
+endif
+
+CFLAGS=-nostdinc -I../../epos/include -I../../epos/userapp/include
+CFLAGS+=-g -Wall -O2 -w	-m32 \
+	-ffreestanding -fleading-underscore -mno-ms-bitfields \
+	-fno-pie #-fno-stack-check -mno-stack-arg-probe -fno-stack-protector
+
 # linux / Windows MinGW
-CC= gcc
-CFLAGS= -g -Wall -O2 -w
+CC=$(CROSS)gcc
+AR=$(CROSS)ar
 LFLAGS=
 
 #####################################################################
@@ -34,5 +43,5 @@ GL_DEPS= ../lib/libTinySDGL.a
 ####################################################################
 # Compile and link control
 
-DIRS= src examples
+DIRS= src
 
